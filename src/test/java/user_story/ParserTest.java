@@ -1,5 +1,6 @@
 package user_story;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -16,7 +17,9 @@ public class ParserTest {
         Entry e = new Entry(input);
         List<Entry> entries = Arrays.asList(e,e);
         Parser parser = new Parser();
-        System.out.println(parser.asciiToCodes(entries));
+        List<Code> codes = parser.asciiToCodes(entries);
+        Assert.assertEquals(codes.get(0).code, "912912912");
+        Assert.assertEquals(codes.get(1).code, "912912912");
 
     }
 }

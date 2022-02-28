@@ -1,7 +1,6 @@
 package user_story;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,19 +58,18 @@ public class Parser {
         List<String> asciiNumbers = new ArrayList<String>();
         String element = "";
         for (String line : entry.lines) {
-            if (line != "") {
-                asciiNumbers.add(0,line.substring(0,3));
-                asciiNumbers.add(1,line.substring(3,6));
-                asciiNumbers.add(2,line.substring(6,9));
-                asciiNumbers.add(3,line.substring(9,12));
-                asciiNumbers.add(4,line.substring(12,15));
-                asciiNumbers.add(5,line.substring(15,18));
-                asciiNumbers.add(6,line.substring(18,21));
-                asciiNumbers.add(7,line.substring(21,24));
-                asciiNumbers.add(8,line.substring(24,27));
+            if(!line.equals("")) {
+                asciiNumbers.add(0, line.substring(0, 3));
+                asciiNumbers.add(1, line.substring(3, 6));
+                asciiNumbers.add(2, line.substring(6, 9));
+                asciiNumbers.add(3, line.substring(9, 12));
+                asciiNumbers.add(4, line.substring(12, 15));
+                asciiNumbers.add(5, line.substring(15, 18));
+                asciiNumbers.add(6, line.substring(18, 21));
+                asciiNumbers.add(7, line.substring(21, 24));
+                asciiNumbers.add(8, line.substring(24, 27));
             }
         }
-        System.out.println(asciiNumbers);
         return asciiNumbers;
     }
 }

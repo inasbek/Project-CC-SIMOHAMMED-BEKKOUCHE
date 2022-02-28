@@ -9,15 +9,22 @@ public class OCR {
     private WriteFile writeFile;
     private List<Code> codes = new ArrayList<Code>();
 
-    public OCR(ReadFile readFile, WriteFile writeFile) {
-        this.readFile = readFile;
-        this.writeFile = writeFile;
+    public OCR(String readFilePath, String writeFilePath) {
+        this.readFile = new ReadFile(readFilePath);
+        this.writeFile = new WriteFile(writeFilePath);
     }
 
-    public void parse(List<Entry> entries) {
+    public List<Code> getCodes() {
+        return codes;
+    }
+
+    public void parse() {
         Parser parser = new Parser();
-        codes = parser.asciiToCodes(entries);
-        this.readFile.read(codes);
+        List<String> lines = this.readFile.read();
+        Entry entry = new Entry(lines);
+        List<Entry> entries = new ArrayList<Entry>();
+        entries.add(entry);
+        List<Code> codes = parser.asciiToCodes(entries);
     }
 
     public void writeCodeInFile(List<Code> codes) {

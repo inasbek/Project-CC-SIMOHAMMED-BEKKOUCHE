@@ -1,9 +1,11 @@
 package user_story;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReadFile {
@@ -12,16 +14,19 @@ public class ReadFile {
     public ReadFile(String filePath) {
         this.filePath = filePath;
     }
-    public void read(List<Code> codes) {
-        List<String> lines = null;
+    public List<String> read() {
+        List<String> lines = new ArrayList<String>();
+        BufferedReader reader = null ;
         try {
-            lines = Files.readAllLines(Paths.get(filePath));
+            reader = Files.newBufferedReader(Path.of(this.filePath));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(int entry=0; entry <= lines.size()/4; entry += 4) {
-            String currentLine = lines.get(entry);
+        return lines;
 
-        }
     }
 }
