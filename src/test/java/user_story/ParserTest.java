@@ -9,17 +9,17 @@ import java.util.List;
 public class ParserTest {
     @Test
     public void ParseCodeTest() {
-        List<String> input = Arrays.asList(" _ |_| _|     |  | _  _||_ ",
-                " _ |_| _|     |  | _  _||_ ",
-                " _ |_| _|     |  | _  _||_ ",
+        List<String> input = Arrays.asList("    _  _     _  _  _  _  _ ",
+                "  | _| _||_||_ |_   ||_||_|",
+                "  ||_  _|  | _||_|  ||_| _|",
                 "");
 
         Entry e = new Entry(input);
         List<Entry> entries = Arrays.asList(e,e);
         Parser parser = new Parser();
-        List<Code> codes = parser.asciiToCodes(entries);
-        Assert.assertEquals(codes.get(0).code, "912912912");
-        Assert.assertEquals(codes.get(1).code, "912912912");
+        List<Code> codes = parser.textToCodes(entries);
+        Assert.assertEquals(codes.get(0).code, "123456789");
+        Assert.assertEquals(codes.get(1).code, "123456789");
 
     }
 }

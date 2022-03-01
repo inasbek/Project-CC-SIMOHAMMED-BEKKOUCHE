@@ -24,7 +24,7 @@ public class OCR {
         Entry entry = new Entry(lines);
         List<Entry> entries = new ArrayList<Entry>();
         entries.add(entry);
-        List<Code> codes = parser.asciiToCodes(entries);
+        codes = parser.textToCodes(entries);
     }
 
     public void writeCodeInFile(List<Code> codes) {
