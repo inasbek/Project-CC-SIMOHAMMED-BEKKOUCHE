@@ -41,9 +41,7 @@ public class Parser {
         return textNumbers;
     }
 
-
-    public List<Code> textToCodes(List<Entry> entries) {
-        List<Code> codes = new ArrayList<>();
+    public List<String> getListOfNumbersFromText(List<Entry> entries) {
         List<String> textStrings = new ArrayList<>();
         for(Entry entry : entries) {
             Map<Integer, String> textNumbers = entryToText(entry);
@@ -61,11 +59,16 @@ public class Parser {
             }
             textStrings.add(codeValues);
         }
+        return textStrings;
+    }
+
+    public List<Code> textToCodes(List<Entry> entries) {
+        List<Code> codes = new ArrayList<>();
+        List<String> textStrings = getListOfNumbersFromText(entries);
         for(String textString : textStrings) {
             Code newCode = new Code(textString);
             codes.add(newCode);
         }
-
         return codes;
     }
 
