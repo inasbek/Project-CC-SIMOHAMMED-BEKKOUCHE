@@ -4,31 +4,24 @@ import org.junit.*;
 
 public class CodeTest {
 
-    /*public void ParseDigitTest(){
-        List<String> input = Arrays.asList("     |  |", " _ _ ||_ "," _ _|  _|","");
-        Entry e = new Entry(input);
-        Coe code = new Code();
-        System.out.println(code.parse(e));
-        //Assert.assertEquals(digit.parse(),"12é31");
-
-    }*/
-  /*  @Test
-    public void CodeHasNineLegalDigitsIsValid() {
+    @Test
+    public void CodeHasNineLegalDigitsHasEmptyStatusTest() {
         Code code = new Code("123456789");
-        Assert.assertEquals(code.isValid(),true);
-        System.out.println(code.toString());
+        Assert.assertEquals(code.getCode(), "123456789");
+        Assert.assertEquals(code.getStatus(), "");
+
     }
     @Test
-    public void CodeHasNotWorkedCheckSumIsInvalid() {
+    public void CodeWithNoWorkedCheckSumHasErrorStatusTest() {
         Code code = new Code("664371495");
-        Assert.assertEquals(code.isValid(),false);
-        System.out.println(code.toString());
+        Assert.assertEquals(code.getCode(), "664371495");
+        Assert.assertEquals(code.getStatus(), " ERR");
     }
     @Test
-    public void CodeHasOneOrMoreIllegalDigitsIsInvalid(){
+    public void CodeWithOneOrMoreUnreadableDigitsHasIllegalStatusTest(){
         Code code = new Code("12345?789");
-        Assert.assertEquals(code.isValid(),false);
-        System.out.println(code.toString());
+        Assert.assertEquals(code.getCode(), "12345?789");
+        Assert.assertEquals(code.getStatus(), " ILL");
     }
-*/
+
 }

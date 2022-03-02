@@ -3,11 +3,15 @@ package user_story;
 import java.util.List;
 
 public class Entry {
-    public List<String> lines;
+    private List<String> lines;
     private boolean isValid = true;
 
     public Entry(List<String> lines) {
         this.lines = lines;
+    }
+
+    public List<String> getLines() {
+        return lines;
     }
 
     public boolean isValid() {

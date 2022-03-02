@@ -1,13 +1,13 @@
 package user_story;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class OCR {
-    private ReadFile readFile;
-    private WriteFile writeFile;
-    private List<Code> codes = new ArrayList<Code>();
+
+    private final ReadFile readFile;
+    private final WriteFile writeFile;
+    private List<Code> codes = new ArrayList<>();
 
     public OCR(String readFilePath, String writeFilePath) {
         this.readFile = new ReadFile(readFilePath);
@@ -22,7 +22,7 @@ public class OCR {
         Parser parser = new Parser();
         List<String> lines = this.readFile.read();
         Entry entry = new Entry(lines);
-        List<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
         entries.add(entry);
         codes = parser.textToCodes(entries);
     }

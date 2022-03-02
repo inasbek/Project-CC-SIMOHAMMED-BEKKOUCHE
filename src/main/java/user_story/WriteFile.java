@@ -2,24 +2,27 @@ package user_story;
 
 
 import java.io.PrintWriter;
-import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.io.*;
+
 public class WriteFile {
-    private String path;
+
+    private final String path;
 
     public WriteFile(String path) {
         this.path = path;
     }
+
     public void write(List<Code> codes) {
-        try{
-            PrintWriter writer = new PrintWriter(this.path, "UTF-8");
+        try {
+            PrintWriter writer = new PrintWriter(this.path, StandardCharsets.UTF_8);
             for(Code code : codes) {
-                writer.write(code.code);
+                writer.write(code.getCode());
             }
             writer.close();
         }
-        catch (IOException e){
+        catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
