@@ -41,6 +41,7 @@ public class OCR {
         List<String> lines = this.readFile.read();
         List<Entry> entries = getListEntriesFromLines(lines);
         this.codes = parser.asciiToCodes(entries);
+        writeCodeInFile(codes);
     }
 
     public void writeCodeInFile(List<Code> codes) {
