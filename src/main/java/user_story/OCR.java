@@ -1,5 +1,6 @@
 package user_story;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class OCR {
         return codes;
     }
 
-    public List<Entry> getListEntriesFromLines(List<String> lines) {
+    public List<Entry> getListEntriesFromLines(List<String> lines) throws ArrayIndexOutOfBoundsException {
         int i=0;
         List<Entry> entries = new ArrayList<>();
         while(i < lines.size()) {
@@ -26,8 +27,15 @@ public class OCR {
             entries.add(entry);
             i+=4;
         }
+        try {
+            if(entries.size()<=100) return entries;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Number Of Entries Should be less than 101! Please repeat Again... ");
+            e.printStackTrace();
+        }
         return entries;
     }
+
     public void parse() {
         Parser parser = new Parser();
         List<String> lines = this.readFile.read();
