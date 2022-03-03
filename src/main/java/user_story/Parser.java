@@ -6,67 +6,67 @@ import java.util.List;
 import java.util.Map;
 
 public class Parser {
-    private HashMap<String, String> textToCodeMap = new HashMap<>();
+    private HashMap<String, String> asciiToCodeMap = new HashMap<>();
 
     public Parser() {
-        textToCodeMap.put(" _ | ||_|", "0");
-        textToCodeMap.put("     |  |", "1");
-        textToCodeMap.put(" _  _||_ ", "2");
-        textToCodeMap.put(" _  _| _|", "3");
-        textToCodeMap.put("   |_|  |", "4");
-        textToCodeMap.put(" _ |_  _|", "5");
-        textToCodeMap.put(" _ |_ |_|", "6");
-        textToCodeMap.put(" _   |  |", "7");
-        textToCodeMap.put(" _ |_||_|", "8");
-        textToCodeMap.put(" _ |_| _|", "9");
+        asciiToCodeMap.put(" _ | ||_|", "0");
+        asciiToCodeMap.put("     |  |", "1");
+        asciiToCodeMap.put(" _  _||_ ", "2");
+        asciiToCodeMap.put(" _  _| _|", "3");
+        asciiToCodeMap.put("   |_|  |", "4");
+        asciiToCodeMap.put(" _ |_  _|", "5");
+        asciiToCodeMap.put(" _ |_ |_|", "6");
+        asciiToCodeMap.put(" _   |  |", "7");
+        asciiToCodeMap.put(" _ |_||_|", "8");
+        asciiToCodeMap.put(" _ |_| _|", "9");
 
     }
 
-    public String getCodeOfText(String text) {
-        return ((text.length() != 0) && (text != "         ") && (textToCodeMap.get(text) == null)) ? "?" : textToCodeMap.get(text);
+    public String getCodeOfAscii(String ascii) {
+        return ((ascii.length() != 0) && (ascii != "         ") && (asciiToCodeMap.get(ascii) == null)) ? "?" : asciiToCodeMap.get(ascii);
     }
 
-    public Map<Integer, String> entryToText(Entry entry) {
-        Map<Integer, String> textNumbers = new HashMap<>();
+    public Map<Integer, String> entryToAscii(Entry entry) {
+        Map<Integer, String> asciiNumbers = new HashMap<>();
         String element = "";
         for (String line : entry.getLines()) {
             if(!line.equals("")) {
                 int i = 0 ;
                 for(int index = 0 ; index < 9 ; index++) {
-                    textNumbers.put(index, textNumbers.get(index) != null ? textNumbers.get(index).concat(line.substring(i, i+3)) : line.substring(i, i+3));
+                    asciiNumbers.put(index, asciiNumbers.get(index) != null ? asciiNumbers.get(index).concat(line.substring(i, i+3)) : line.substring(i, i+3));
                     i += 3;
                 }
             }
         }
-        return textNumbers;
+        return asciiNumbers;
     }
 
-    public List<String> getListOfNumbersFromText(List<Entry> entries) {
-        List<String> textStrings = new ArrayList<>();
+    public List<String> getListOfAscii(List<Entry> entries) {
+        List<String> asciiStrings = new ArrayList<>();
         for(Entry entry : entries) {
-            Map<Integer, String> textNumbers = entryToText(entry);
+            Map<Integer, String> asciiNumbers = entryToAscii(entry);
             String codeValues = "";
             String codeValue = "";
-            String textOf = "";
-            for (int i = 0; i < textNumbers.size(); i++) {
-                textOf += textNumbers.get(i);
-                codeValue += getCodeOfText(textOf);
+            String asciiOf = "";
+            for (int i = 0; i < asciiNumbers.size(); i++) {
+                asciiOf += asciiNumbers.get(i);
+                codeValue += getCodeOfAscii(asciiOf);
                 if (!(codeValue == null)) {
                     codeValues += codeValue;
                     codeValue = "";
-                    textOf = "";
+                    asciiOf = "";
                 }
             }
-            textStrings.add(codeValues);
+            asciiStrings.add(codeValues);
         }
-        return textStrings;
+        return asciiStrings;
     }
 
-    public List<Code> textToCodes(List<Entry> entries) {
+    public List<Code> asciiToCodes(List<Entry> entries) {
         List<Code> codes = new ArrayList<>();
-        List<String> textStrings = getListOfNumbersFromText(entries);
-        for(String textString : textStrings) {
-            Code newCode = new Code(textString);
+        List<String> asciiStrings = getListOfAscii(entries);
+        for(String asciiString : asciiStrings) {
+            Code newCode = new Code(asciiString);
             codes.add(newCode);
         }
         return codes;

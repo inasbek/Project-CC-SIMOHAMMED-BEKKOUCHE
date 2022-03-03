@@ -18,7 +18,7 @@ public class WriteFile {
         try {
             PrintWriter writer = new PrintWriter(this.path, StandardCharsets.UTF_8);
             for(Code code : codes) {
-                writer.write(code.getCode());
+                writer.write(new StringBuilder().append(code.toString()).append('\n').toString());
             }
             writer.close();
         }

@@ -18,13 +18,21 @@ public class OCR {
         return codes;
     }
 
+    public List<Entry> getListEntriesFromLines(List<String> lines) {
+        int i=0;
+        List<Entry> entries = new ArrayList<>();
+        while(i < lines.size()) {
+            Entry entry = new Entry(lines.subList(i, i+3));
+            entries.add(entry);
+            i+=4;
+        }
+        return entries;
+    }
     public void parse() {
         Parser parser = new Parser();
         List<String> lines = this.readFile.read();
-        Entry entry = new Entry(lines);
-        List<Entry> entries = new ArrayList<>();
-        entries.add(entry);
-        codes = parser.textToCodes(entries);
+        List<Entry> entries = getListEntriesFromLines(lines);
+        this.codes = parser.asciiToCodes(entries);
     }
 
     public void writeCodeInFile(List<Code> codes) {

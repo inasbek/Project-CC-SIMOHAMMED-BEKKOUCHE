@@ -23,4 +23,8 @@ public class Code {
     public String getStatus() {
         return status;
     }
+
+    public String toString() {
+        return (this.getCode() + this.getStatus());
+    }
 }
